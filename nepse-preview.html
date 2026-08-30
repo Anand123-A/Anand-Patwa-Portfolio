@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>NEPSE Data Analysis | Anand Patwa</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            padding: 40px;
+            background: #070a0f;
+            color: #f5f7fa;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .preview-container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* HEADER */
+
+        .preview-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .preview-heading h1 {
+            margin: 0;
+            font-size: 42px;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .preview-heading p {
+            margin: 10px 0 0;
+            color: #91a0b5;
+            font-size: 16px;
+        }
+
+        .back-link {
+            display: inline-block;
+            padding: 13px 20px;
+            border: 1px solid #2b3440;
+            border-radius: 30px;
+            color: #f5f7fa;
+            text-decoration: none;
+            font-size: 14px;
+            transition: 0.3s ease;
+        }
+
+        .back-link:hover {
+            border-color: #62defc;
+            color: #62defc;
+            transform: translateY(-2px);
+        }
+
+        /* SCREENSHOT CARD */
+
+        .preview-card {
+            margin-bottom: 50px;
+            border: 1px solid #26313c;
+            border-radius: 18px;
+            overflow: hidden;
+            background: #0b0f14;
+        }
+
+        .preview-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 24px;
+            border-bottom: 1px solid #26313c;
+            color: #62defc;
+            font-family: monospace;
+            font-size: 13px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .preview-number {
+            color: #77879a;
+        }
+
+        /* IMAGE */
+
+        .preview-image-wrapper {
+            width: 100%;
+            background: #05070a;
+            padding: 20px;
+        }
+
+        .preview-image-wrapper img {
+            display: block;
+            width: 100%;
+            height: auto;
+            max-width: 100%;
+            border-radius: 8px;
+        }
+
+        /* FOOTER */
+
+        .preview-footer {
+            padding: 20px 0 10px;
+            text-align: center;
+            color: #667487;
+            font-size: 13px;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 700px) {
+
+            body {
+                padding: 20px;
+            }
+
+            .preview-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .preview-heading h1 {
+                font-size: 30px;
+            }
+
+            .preview-image-wrapper {
+                padding: 10px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <main class="preview-container">
+
+
+        <!-- HEADER -->
+
+        <header class="preview-header">
+
+            <div class="preview-heading">
+
+                <h1>NEPSE Data Analysis</h1>
+
+                <p>
+                    Nepal Stock Market Analysis — Project Preview
+                </p>
+
+            </div>
+
+
+            <a
+                href="index.html#projects"
+                class="back-link"
+            >
+                ← Back to Portfolio
+            </a>
+
+        </header>
+
+
+
+        <!-- LOGIN SCREENSHOT -->
+
+        <section class="preview-card">
+
+            <div class="preview-title">
+
+                <span>
+                    Login / Application Entry
+                </span>
+
+                <span class="preview-number">
+                    01
+                </span>
+
+            </div>
+
+
+            <div class="preview-image-wrapper">
+
+                <img
+                    src="assets/projects/NEPSE/nepse-login.png"
+                    alt="NEPSE Data Analysis Login Screen"
+                >
+
+            </div>
+
+        </section>
+
+
+
+        <!-- DASHBOARD SCREENSHOT -->
+
+        <section class="preview-card">
+
+            <div class="preview-title">
+
+                <span>
+                    Market Dashboard
+                </span>
+
+                <span class="preview-number">
+                    02
+                </span>
+
+            </div>
+
+
+            <div class="preview-image-wrapper">
+
+                <img
+                    src="assets/projects/NEPSE/nepse-dashboard.png"
+                    alt="NEPSE Market Analysis Dashboard"
+                >
+
+            </div>
+
+        </section>
+
+
+
+        <div class="preview-footer">
+
+            NEPSE Data Analysis • Anand Patwa
+
+        </div>
+
+
+    </main>
+
+</body>
+
+</html>
