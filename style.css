@@ -3010,3 +3010,15 @@ a:focus-visible {
     }
 
 }
+/* =========================================================
+   FIXED HEADER SCROLL OFFSET
+   ========================================================= */
+
+#about,
+#expertise,
+#projects,
+#research,
+#journey,
+#contact {
+    scroll-margin-top: 90px;
+}
