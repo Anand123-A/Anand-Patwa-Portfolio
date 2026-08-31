@@ -1548,3 +1548,85 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 });
+/* =========================================================
+   PORTFOLIO NAVIGATION — MOBILE + DESKTOP
+   ========================================================= */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const navigationLinks = document.querySelectorAll(
+        'a[href^="#"]'
+    );
+
+    navigationLinks.forEach(function (link) {
+
+        link.addEventListener("click", function (event) {
+
+            const targetId = this.getAttribute("href");
+
+            if (
+                !targetId ||
+                targetId === "#" ||
+                targetId === "#home"
+            ) {
+                return;
+            }
+
+            const target = document.querySelector(targetId);
+
+            if (!target) {
+                return;
+            }
+
+            event.preventDefault();
+
+            /*
+               Close mobile menu if it is open
+            */
+            const mobileNavigation =
+                document.getElementById("mobileNavigation");
+
+            const menuButton =
+                document.getElementById("menuButton");
+
+            if (mobileNavigation) {
+                mobileNavigation.classList.remove("active");
+            }
+
+            if (menuButton) {
+                menuButton.classList.remove("active");
+                menuButton.setAttribute(
+                    "aria-expanded",
+                    "false"
+                );
+                menuButton.setAttribute(
+                    "aria-label",
+                    "Open navigation menu"
+                );
+            }
+
+            /*
+               Scroll to the requested section
+               Works on mobile and desktop.
+            */
+            const header =
+                document.getElementById("siteHeader");
+
+            const headerHeight =
+                header ? header.offsetHeight : 0;
+
+            const targetPosition =
+                target.getBoundingClientRect().top +
+                window.pageYOffset -
+                headerHeight;
+
+            window.scrollTo({
+                top: targetPosition,
+                behavior: "smooth"
+            });
+
+        });
+
+    });
+
+});
