@@ -1018,3 +1018,533 @@ if (profilePhoto) {
 console.log(
     "Anand Patwa Portfolio — JavaScript loaded successfully."
 );
+/* =========================================================
+   ANAND'S PORTFOLIO AI ASSISTANT
+========================================================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const aiAssistant = document.getElementById("aiAssistant");
+    const aiChatWindow = document.getElementById("aiChatWindow");
+    const aiLauncher = document.getElementById("aiLauncher");
+    const aiClose = document.getElementById("aiClose");
+    const aiChatBody = document.getElementById("aiChatBody");
+    const aiChatForm = document.getElementById("aiChatForm");
+    const aiChatInput = document.getElementById("aiChatInput");
+    const aiQuickQuestions =
+        document.querySelectorAll(".ai-quick-questions button");
+
+
+    /* =====================================================
+       SAFETY CHECK
+    ===================================================== */
+
+    if (
+        !aiAssistant ||
+        !aiChatWindow ||
+        !aiLauncher ||
+        !aiClose ||
+        !aiChatBody ||
+        !aiChatForm ||
+        !aiChatInput
+    ) {
+        return;
+    }
+
+
+    /* =====================================================
+       OPEN CHAT
+    ===================================================== */
+
+    function openAIChat() {
+
+        aiAssistant.classList.add("ai-open");
+
+        aiLauncher.setAttribute("aria-expanded", "true");
+
+        setTimeout(() => {
+            aiChatInput.focus();
+        }, 350);
+    }
+
+
+    /* =====================================================
+       CLOSE CHAT
+    ===================================================== */
+
+    function closeAIChat() {
+
+        aiAssistant.classList.remove("ai-open");
+
+        aiLauncher.setAttribute("aria-expanded", "false");
+    }
+
+
+    /* =====================================================
+       AUTOMATICALLY OPEN ON PAGE LOAD
+    ===================================================== */
+
+    setTimeout(() => {
+
+        openAIChat();
+
+        aiAssistant.classList.add("ai-attention");
+
+        setTimeout(() => {
+            aiAssistant.classList.remove("ai-attention");
+        }, 3500);
+
+    }, 500);
+
+
+    /* =====================================================
+       LAUNCHER CLICK
+    ===================================================== */
+
+    aiLauncher.addEventListener("click", () => {
+
+        openAIChat();
+
+    });
+
+
+    /* =====================================================
+       CLOSE BUTTON
+    ===================================================== */
+
+    aiClose.addEventListener("click", () => {
+
+        closeAIChat();
+
+    });
+
+
+    /* =====================================================
+       ANSWERS
+    ===================================================== */
+
+    const answers = {
+
+        "what-can-anand-do": `
+            <p><strong>Anand is a versatile freelancer and problem solver.</strong></p>
+
+            <p>
+                He can work across programming, web development,
+                data & analysis, and technical problem solving.
+                Rather than limiting himself to one particular field,
+                Anand focuses on understanding the problem and finding
+                a practical solution.
+            </p>
+        `,
+
+
+        "programming": `
+            <p>
+                Anand can work on programming-related tasks including
+                writing code, debugging, improving existing code,
+                and developing practical software solutions.
+            </p>
+
+            <p>
+                If you have a programming problem or an idea that needs
+                to be turned into working code, Anand can help explore
+                and build the solution.
+            </p>
+        `,
+
+
+        "web-development": `
+            <p>
+                Yes. Anand can work on web-development projects,
+                including building websites, improving existing
+                websites, troubleshooting functionality, and making
+                interfaces responsive across devices.
+            </p>
+
+            <p>
+                Whether you have an idea for a website or need help
+                improving an existing one, you can discuss the
+                requirement with Anand.
+            </p>
+        `,
+
+
+        "data-analysis": `
+            <p>
+                Anand can work with data-analysis projects involving
+                datasets, insights, visualization, dashboards and
+                analytical problem solving.
+            </p>
+
+            <p>
+                His portfolio includes several data-focused projects
+                demonstrating his ability to turn data into useful
+                information and visual insights.
+            </p>
+        `,
+
+
+        "problem-solving": `
+            <p>
+                <strong>Problem solving is at the heart of Anand's
+                approach.</strong>
+            </p>
+
+            <p>
+                A project doesn't always fit neatly into one category.
+                Anand approaches a challenge by understanding what
+                needs to be achieved and then finding a practical
+                technical solution.
+            </p>
+
+            <p>
+                Programming, web development, analysis, automation,
+                debugging or a custom technical challenge — the first
+                step is understanding the problem.
+            </p>
+        `,
+
+
+        "projects": `
+            <p>
+                Anand's portfolio contains projects covering different
+                areas of programming, web development, data analysis
+                and visualization.
+            </p>
+
+            <p>
+                Some highlighted projects include NEPSE Data Analysis,
+                IPL Dashboard, Blinkit Analysis, Netflix Analysis and
+                Facial Recognition.
+            </p>
+
+            <p>
+                You can explore the <strong>Projects</strong> section
+                of the portfolio to see them in more detail.
+            </p>
+        `,
+
+
+        "work-with-anand": `
+            <p>
+                <strong>Have a project or problem in mind?</strong>
+            </p>
+
+            <p>
+                You can reach out to Anand through the
+                <strong>Let's Connect</strong> section of this portfolio.
+            </p>
+
+            <p>
+                Tell him what you're trying to build or what problem
+                you're facing, and you can discuss how he may be able
+                to help.
+            </p>
+        `,
+
+
+        "default": `
+            <p>
+                I'm Anand's Portfolio Assistant, so I can help you
+                explore Anand's work and capabilities.
+            </p>
+
+            <p>
+                You can ask about his
+                <strong>programming</strong>,
+                <strong>web development</strong>,
+                <strong>data & analysis</strong>,
+                <strong>problem-solving</strong>,
+                <strong>projects</strong>,
+                or how to <strong>work with Anand</strong>.
+            </p>
+        `
+
+    };
+
+
+    /* =====================================================
+       ADD USER MESSAGE
+    ===================================================== */
+
+    function addUserMessage(message) {
+
+        const wrapper = document.createElement("div");
+
+        wrapper.className = "ai-message ai-message-user";
+
+        wrapper.innerHTML = `
+            <div class="ai-message-content">
+                <p>${escapeHTML(message)}</p>
+            </div>
+        `;
+
+        aiChatBody.appendChild(wrapper);
+
+        scrollChatToBottom();
+    }
+
+
+    /* =====================================================
+       ADD BOT MESSAGE
+    ===================================================== */
+
+    function addBotMessage(answer) {
+
+        const wrapper = document.createElement("div");
+
+        wrapper.className = "ai-message ai-message-bot";
+
+        wrapper.innerHTML = `
+            <div class="ai-message-avatar">
+                ✦
+            </div>
+
+            <div class="ai-message-content">
+                ${answer}
+            </div>
+        `;
+
+        aiChatBody.appendChild(wrapper);
+
+        scrollChatToBottom();
+    }
+
+
+    /* =====================================================
+       SCROLL CHAT
+    ===================================================== */
+
+    function scrollChatToBottom() {
+
+        aiChatBody.scrollTop = aiChatBody.scrollHeight;
+
+    }
+
+
+    /* =====================================================
+       ESCAPE USER INPUT
+       Prevents HTML injection.
+    ===================================================== */
+
+    function escapeHTML(text) {
+
+        const div = document.createElement("div");
+
+        div.textContent = text;
+
+        return div.innerHTML;
+
+    }
+
+
+    /* =====================================================
+       QUESTION CLASSIFICATION
+    ===================================================== */
+
+    function getAnswer(question) {
+
+        const text = question
+            .toLowerCase()
+            .trim();
+
+
+        /* PROGRAMMING */
+
+        if (
+            text.includes("programming") ||
+            text.includes("programmer") ||
+            text.includes("coding") ||
+            text.includes("code") ||
+            text.includes("debug") ||
+            text.includes("software")
+        ) {
+
+            return answers["programming"];
+
+        }
+
+
+        /* WEB DEVELOPMENT */
+
+        if (
+            text.includes("web development") ||
+            text.includes("website") ||
+            text.includes("web design") ||
+            text.includes("frontend") ||
+            text.includes("front end") ||
+            text.includes("responsive")
+        ) {
+
+            return answers["web-development"];
+
+        }
+
+
+        /* DATA & ANALYSIS */
+
+        if (
+            text.includes("data analysis") ||
+            text.includes("data") ||
+            text.includes("dataset") ||
+            text.includes("dashboard") ||
+            text.includes("visualization") ||
+            text.includes("analytics")
+        ) {
+
+            return answers["data-analysis"];
+
+        }
+
+
+        /* PROBLEM SOLVING */
+
+        if (
+            text.includes("problem") ||
+            text.includes("solve") ||
+            text.includes("solution") ||
+            text.includes("technical challenge") ||
+            text.includes("custom project")
+        ) {
+
+            return answers["problem-solving"];
+
+        }
+
+
+        /* PROJECTS */
+
+        if (
+            text.includes("project") ||
+            text.includes("projects") ||
+            text.includes("portfolio") ||
+            text.includes("nepse") ||
+            text.includes("ipl") ||
+            text.includes("blinkit") ||
+            text.includes("netflix") ||
+            text.includes("facial recognition")
+        ) {
+
+            return answers["projects"];
+
+        }
+
+
+        /* WORK WITH ANAND */
+
+        if (
+            text.includes("hire") ||
+            text.includes("freelance") ||
+            text.includes("freelancer") ||
+            text.includes("work with") ||
+            text.includes("contact") ||
+            text.includes("available") ||
+            text.includes("collaborate")
+        ) {
+
+            return answers["work-with-anand"];
+
+        }
+
+
+        /* GENERAL CAPABILITIES */
+
+        if (
+            text.includes("what can anand do") ||
+            text.includes("what does anand do") ||
+            text.includes("what can you do") ||
+            text.includes("capabilities") ||
+            text.includes("skills") ||
+            text.includes("specialize") ||
+            text.includes("specialises") ||
+            text.includes("specializes")
+        ) {
+
+            return answers["what-can-anand-do"];
+
+        }
+
+
+        return answers["default"];
+
+    }
+
+
+    /* =====================================================
+       QUICK QUESTION CLICK
+    ===================================================== */
+
+    aiQuickQuestions.forEach(button => {
+
+        button.addEventListener("click", () => {
+
+            const questionType = button.dataset.question;
+
+            const questionText = button.textContent.trim();
+
+            addUserMessage(questionText);
+
+
+            /*
+             * IMPORTANT:
+             * Quick-question buttons are intentionally NOT removed.
+             * They remain available so the visitor can continue
+             * exploring different topics.
+             */
+
+
+            setTimeout(() => {
+
+                addBotMessage(
+                    answers[questionType] || answers.default
+                );
+
+            }, 350);
+
+        });
+
+    });
+
+
+    /* =====================================================
+       TEXT INPUT
+    ===================================================== */
+
+    aiChatForm.addEventListener("submit", (event) => {
+
+        event.preventDefault();
+
+
+        const question = aiChatInput.value.trim();
+
+
+        if (!question) {
+            return;
+        }
+
+
+        addUserMessage(question);
+
+
+        aiChatInput.value = "";
+
+
+        /*
+         * IMPORTANT:
+         * Quick-question buttons are intentionally NOT removed
+         * after typed questions either.
+         */
+
+
+        setTimeout(() => {
+
+            const answer = getAnswer(question);
+
+            addBotMessage(answer);
+
+        }, 400);
+
+    });
+
+
+});
