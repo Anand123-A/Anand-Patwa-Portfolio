@@ -1090,20 +1090,89 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       AUTOMATICALLY OPEN ON PAGE LOAD
-    ===================================================== */
+   MOBILE AI ASSISTANT ACTIVATION
+===================================================== */
+
+let mobileAIActivated = false;
+
+function activateMobileAI() {
+
+    if (mobileAIActivated) {
+        return;
+    }
+
+    mobileAIActivated = true;
+
+    openAIChat();
+
+    aiAssistant.classList.add("ai-attention");
 
     setTimeout(() => {
+        aiAssistant.classList.remove("ai-attention");
+    }, 3500);
+}
 
-        openAIChat();
 
-        aiAssistant.classList.add("ai-attention");
+/* =====================================================
+   OPEN AI AFTER HALF-SCREEN SCROLL
+   MOBILE ONLY
+===================================================== */
 
-        setTimeout(() => {
-            aiAssistant.classList.remove("ai-attention");
-        }, 3500);
+function handleMobileScroll() {
 
-    }, 500);
+    if (window.innerWidth > 760) {
+        return;
+    }
+
+    const scrollPosition = window.scrollY;
+    const triggerPoint = window.innerHeight * 0.5;
+
+    if (scrollPosition >= triggerPoint) {
+        activateMobileAI();
+        window.removeEventListener(
+            "scroll",
+            handleMobileScroll
+        );
+    }
+}
+
+window.addEventListener(
+    "scroll",
+    handleMobileScroll,
+    { passive: true }
+);
+
+
+/* =====================================================
+   OPEN AI AFTER MOBILE NAVIGATION / HERO CTA
+   MOBILE ONLY
+===================================================== */
+
+const mobileNavigationLinks =
+    document.querySelectorAll(
+        ".mobile-navigation a, .hero-buttons a"
+    );
+
+mobileNavigationLinks.forEach(link => {
+
+    link.addEventListener("click", () => {
+
+        if (window.innerWidth <= 760) {
+
+            /*
+               Allow the navigation/anchor action to happen
+               first, then open the AI assistant.
+            */
+
+            setTimeout(() => {
+                activateMobileAI();
+            }, 700);
+
+        }
+
+    });
+
+});
 
 
     /* =====================================================
