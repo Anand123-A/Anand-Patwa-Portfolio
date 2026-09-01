@@ -212,7 +212,7 @@ mobileNavigationLinks.forEach(
 
 /* =========================================================
    5. SMOOTH SCROLL
-   ========================================================= */
+========================================================= */
 
 navigationLinks.forEach(
     (link) => {
@@ -222,9 +222,7 @@ navigationLinks.forEach(
             function (event) {
 
                 const targetId =
-                    this.getAttribute(
-                        "href"
-                    );
+                    this.getAttribute("href");
 
                 if (
                     !targetId ||
@@ -234,11 +232,23 @@ navigationLinks.forEach(
                 }
 
                 const targetElement =
-                    document.querySelector(
-                        targetId
-                    );
+                    document.querySelector(targetId);
 
                 if (!targetElement) {
+                    return;
+                }
+
+                /*
+                   Let the browser handle the hero CTA buttons
+                   natively on mobile. This prevents mobile
+                   browsers from interfering with the initial
+                   hero-section navigation.
+                */
+                if (
+                    window.innerWidth <= 760 &&
+                    this.closest(".hero-buttons")
+                ) {
+                    closeMobileMenu();
                     return;
                 }
 
@@ -250,7 +260,6 @@ navigationLinks.forEach(
                 });
 
                 closeMobileMenu();
-
             }
         );
 
