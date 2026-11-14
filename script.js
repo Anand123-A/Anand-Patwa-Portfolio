@@ -280,12 +280,22 @@ navigationLinks.forEach(
 
                 event.preventDefault();
 
-                targetElement.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start"
-                });
+                const headerOffset = siteHeader
+                    ? siteHeader.getBoundingClientRect().height
+                    : 0;
+                const targetTop = Math.max(
+                    0,
+                    targetElement.getBoundingClientRect().top +
+                        window.scrollY -
+                        headerOffset -
+                        8
+                );
 
                 closeMobileMenu();
+                window.scrollTo({
+                    top: targetTop,
+                    behavior: "smooth"
+                });
             }
         );
 
