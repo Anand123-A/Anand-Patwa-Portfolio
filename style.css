@@ -3467,7 +3467,7 @@ html[data-theme="light"] .timeline-item strong {
 
     .social-links {
         position: relative;
-        z-index: 5;
+        z-index: 10001;
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 10px;
@@ -3476,7 +3476,7 @@ html[data-theme="light"] .timeline-item strong {
 
     .social-links a {
         position: relative;
-        z-index: 6;
+        z-index: 10002;
         display: inline-flex;
         align-items: center;
         justify-content: center;

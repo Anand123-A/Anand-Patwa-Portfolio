@@ -45,11 +45,6 @@ const projectCards =
         ".project-card"
     );
 
-const navigationLinks =
-    document.querySelectorAll(
-        'a[href^="#"]'
-    );
-
 const desktopNavigationLinks =
     document.querySelectorAll(
         ".desktop-navigation a"
@@ -243,59 +238,6 @@ mobileNavigationLinks.forEach(
 
                 closeMobileMenu();
 
-            }
-        );
-
-    }
-);
-
-
-/* =========================================================
-   5. SMOOTH SCROLL
-========================================================= */
-
-navigationLinks.forEach(
-    (link) => {
-
-        link.addEventListener(
-            "click",
-            function (event) {
-
-                const targetId =
-                    this.getAttribute("href");
-
-                if (
-                    !targetId ||
-                    targetId === "#"
-                ) {
-                    return;
-                }
-
-                const targetElement =
-                    document.querySelector(targetId);
-
-                if (!targetElement) {
-                    return;
-                }
-
-                event.preventDefault();
-
-                const headerOffset = siteHeader
-                    ? siteHeader.getBoundingClientRect().height
-                    : 0;
-                const targetTop = Math.max(
-                    0,
-                    targetElement.getBoundingClientRect().top +
-                        window.scrollY -
-                        headerOffset -
-                        8
-                );
-
-                closeMobileMenu();
-                window.scrollTo({
-                    top: targetTop,
-                    behavior: "smooth"
-                });
             }
         );
 
