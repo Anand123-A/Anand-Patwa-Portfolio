@@ -1578,7 +1578,7 @@ img {
     color: #687589;
 
     font-family: var(--mono);
-    font-size: 10px;
+    font-size: 14px;
 }
 
 .timeline-dot {
@@ -2246,9 +2246,7 @@ img {
         gap: 15px;
         padding-left: 25px;
     }
-
-
-    /* CONTACT */
+        /* CONTACT */
 
     .contact-box {
     grid-template-columns: 1fr;
@@ -2697,8 +2695,7 @@ a:focus-visible {
     padding: 12px;
 
     border-top: 1px solid rgba(255, 255, 255, 0.07);
-
-    background: #0d131b;
+        background: #0d131b;
 }
 
 
@@ -3028,6 +3025,184 @@ a:focus-visible {
 #contact {
     scroll-margin-top: 90px;
 }
+
+/* =========================================================
+   SAVED LIGHT THEME
+========================================================= */
+
+html[data-theme="light"] {
+    color-scheme: light;
+    --bg: #f5f8fb;
+    --bg-soft: #edf2f7;
+    --card: #ffffff;
+    --card-light: #f1f5f9;
+    --text: #17212d;
+    --muted: #536274;
+    --muted-light: #465568;
+    --border: rgba(23, 33, 45, 0.16);
+    --cyan: #087da0;
+    --cyan-dark: #066a88;
+}
+
+html[data-theme="light"] body {
+    background: #f5f8fb;
+    color: #17212d;
+}
+
+html[data-theme="light"] body :is(h1, h2, h3, h4, p, span, strong, label, button, a, li, small, em) {
+    color: #263548;
+}
+
+html[data-theme="light"] :is(.site-header, .site-header.scrolled) {
+    background: rgba(248, 251, 254, 0.96);
+    border-color: rgba(23, 33, 45, 0.14);
+}
+
+html[data-theme="light"] :is(.about-section, .projects-section, .research-section, .footer) {
+    background: #edf2f7;
+}
+
+html[data-theme="light"] :is(.mobile-navigation, .mobile-navigation a) {
+    background: #f8fbfe;
+}
+
+html[data-theme="light"] :is(.expertise-card, .project-card, .project-modal-content, .modal-image-card, .contact-box, .contact-form, .photo-frame) {
+    background-color: #ffffff;
+    border-color: rgba(23, 33, 45, 0.16);
+}
+
+html[data-theme="light"] .expertise-card {
+    background-image: linear-gradient(145deg, #ffffff, #edf3f8);
+}
+
+html[data-theme="light"] .contact-box {
+    background-image: radial-gradient(circle at 90% 20%, rgba(8, 125, 160, 0.09), transparent 35%), linear-gradient(#ffffff, #f5f8fb);
+}
+
+html[data-theme="light"] :is(.contact-form, .contact-form-field input, .contact-form-field textarea) {
+    background-color: #f4f7fa;
+    border-color: rgba(23, 33, 45, 0.18);
+    color: #17212d;
+}
+
+html[data-theme="light"] :is(.contact-form-field input::placeholder, .contact-form-field textarea::placeholder) {
+    color: #718096;
+}
+
+html[data-theme="light"] :is(.secondary-button, .nav-contact, .social-links a, .filter) {
+    color: #263548;
+    border-color: rgba(23, 33, 45, 0.2);
+}
+
+html[data-theme="light"] :is(.nav-contact:hover, .secondary-button:hover, .social-links a:hover) {
+    background: rgba(8, 125, 160, 0.08);
+}
+
+html[data-theme="light"] :is(.desktop-navigation a:hover, .filter:hover) {
+    color: #087da0;
+}
+
+html[data-theme="light"] body :is(.section-label, .small-heading, .mono-label, .hero h1 span, .project-content h3 em, .research-item a, .email, .project-actions a, .project-details-button, .projects-footer a, .timeline-type, .research-type) {
+    color: #087da0;
+}
+
+html[data-theme="light"] :is(.project-visual, .project-visual-powerbi, .project-visual-netflix, .project-visual-ai, .project-visual-code) {
+    color: #f2f5f8;
+}
+
+html[data-theme="light"] .project-visual-content :is(.visual-title, .visual-number, .visual-subtitle),
+html[data-theme="light"] .photo-header,
+html[data-theme="light"] .photo-status,
+html[data-theme="light"] .photo-status span {
+    color: #f2f5f8;
+}
+
+html[data-theme="light"] :is(.timeline, .about-statistics, .project-actions, .projects-footer, .research-list, .research-item, .project-modal-footer) {
+    border-color: rgba(23, 33, 45, 0.16);
+}
+
+html[data-theme="light"] .timeline-item strong {
+    color: #17212d;
+}
+
+html[data-theme="light"] .ai-chat-window {
+    background: #ffffff;
+    border-color: rgba(8, 125, 160, 0.28);
+}
+
+html[data-theme="light"] :is(.ai-chat-header, .ai-chat-input-area, .ai-chat-input-area input, .ai-message-bubble, .ai-quick-questions button) {
+    background: #f1f5f9;
+    border-color: rgba(23, 33, 45, 0.14);
+    color: #263548;
+}
+
+html[data-theme="light"] :is(.ai-chat-title h3, .ai-message-bubble, .ai-chat-input-area input, .ai-quick-questions button) {
+    color: #263548;
+}
+
+html[data-theme="light"] :is(.ai-chat-body, .ai-chat-window p, .ai-chat-window strong) {
+    color: #263548;
+}
+
+/* Theme control: inline in the desktop navigation, floating on phones. */
+.theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    min-height: 40px;
+    padding: 0 13px;
+    border: 1px solid var(--border);
+    border-radius: 30px;
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--text);
+    font-size: 12px;
+    cursor: pointer;
+    touch-action: manipulation;
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.theme-toggle:hover {
+    background: rgba(85, 220, 255, 0.1);
+    border-color: var(--border-bright);
+}
+
+.theme-toggle-icon {
+    font-size: 17px;
+    line-height: 1;
+}
+
+html[data-theme="light"] .theme-toggle {
+    background: #ffffff;
+    color: #263548;
+    border-color: rgba(23, 33, 45, 0.2);
+}
+
+@media (max-width: 760px) {
+    .theme-toggle {
+        position: fixed;
+        left: 12px;
+        bottom: 18px;
+        z-index: 9998;
+        min-height: 38px;
+        padding: 0 11px;
+        background: rgba(11, 16, 23, 0.94);
+        box-shadow: 0 5px 18px rgba(0, 0, 0, 0.22);
+        -webkit-backdrop-filter: blur(12px);
+        backdrop-filter: blur(12px);
+    }
+
+    html[data-theme="light"] .theme-toggle {
+        background: rgba(255, 255, 255, 0.96);
+    }
+
+    .social-links a {
+        position: relative;
+        z-index: 1;
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
+    }
+}
 /* =========================================================
    MOBILE NAVIGATION — FINAL FIX
    Keeps navigation completely above page content
@@ -3121,5 +3296,74 @@ a:focus-visible {
     .hero-content,
     .hero-photo-container {
         position: relative;
+    }
+}
+/* Light-theme text and assistant contrast fix */
+html[data-theme="light"] .hero-label {
+    color: #536274 !important;
+}
+
+html[data-theme="light"] .about-content .about-lead,
+html[data-theme="light"] .about-content .about-lead p {
+    color: #263548 !important;
+}
+
+html[data-theme="light"] .about-content .about-lead strong {
+    color: #087da0 !important;
+}
+
+html[data-theme="light"] .ai-message-content {
+    background: #f1f5f9 !important;
+    border-color: rgba(23, 33, 45, 0.14) !important;
+    color: #263548 !important;
+}
+
+html[data-theme="light"] .ai-message-content p,
+html[data-theme="light"] .ai-message-content span,
+html[data-theme="light"] .ai-message-content strong {
+    color: #263548 !important;
+}
+
+html[data-theme="light"] .ai-message-user .ai-message-content {
+    background: #e6f4f8 !important;
+    border-color: rgba(8, 125, 160, 0.2) !important;
+}
+/* Light-theme education and timeline contrast fix */
+html[data-theme="light"] .timeline-item .timeline-company,
+html[data-theme="light"] .timeline-item p {
+    color: #536274 !important;
+}
+
+html[data-theme="light"] .timeline-item .timeline-date {
+    color: #536274 !important;
+}
+
+html[data-theme="light"] .timeline-item strong {
+    color: #17212d !important;
+}
+.research-type {
+    font-size: 14px !important;
+    font-weight: 700 !important;
+}
+/* Make section labels stand out as headings */
+.section-label,
+.contact-information .mono-label {
+    display: inline-block;
+    font-size: 16px !important;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--cyan);
+}
+/* Consistent spacing between page sections */
+.section {
+    padding-top: 112px !important;
+    padding-bottom: 112px !important;
+}
+
+@media (max-width: 760px) {
+    .section {
+        padding-top: 76px !important;
+        padding-bottom: 76px !important;
     }
 }

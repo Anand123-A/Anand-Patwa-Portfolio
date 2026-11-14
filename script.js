@@ -60,6 +60,46 @@ const mobileNavigationLinks =
         ".mobile-navigation a"
     );
 
+/* =========================================================
+   THEME TOGGLE — SAVED BETWEEN VISITS
+   ========================================================= */
+
+const themeToggle = document.getElementById("themeToggle");
+const themeRoot = document.documentElement;
+
+function applyTheme(theme) {
+    const isLight = theme === "light";
+    themeRoot.dataset.theme = isLight ? "light" : "dark";
+
+    if (themeToggle) {
+        themeToggle.setAttribute("aria-pressed", String(isLight));
+        themeToggle.setAttribute(
+            "aria-label",
+            isLight ? "Switch to dark mode" : "Switch to light mode"
+        );
+        themeToggle.title = isLight ? "Switch to dark mode" : "Switch to light mode";
+
+        const icon = themeToggle.querySelector(".theme-toggle-icon");
+        const label = themeToggle.querySelector(".theme-toggle-text");
+        if (icon) icon.textContent = isLight ? "☾" : "☼";
+        if (label) label.textContent = isLight ? "Dark" : "Light";
+    }
+
+    try {
+        localStorage.setItem("portfolio-theme", isLight ? "light" : "dark");
+    } catch (error) {
+        // Theme still works for this visit when storage is unavailable.
+    }
+}
+
+applyTheme(themeRoot.dataset.theme === "light" ? "light" : "dark");
+
+if (themeToggle) {
+    themeToggle.addEventListener("click", () => {
+        applyTheme(themeRoot.dataset.theme === "light" ? "dark" : "light");
+    });
+}
+
 
 /* =========================================================
    2. HEADER SCROLL EFFECT
@@ -238,20 +278,6 @@ navigationLinks.forEach(
                     return;
                 }
 
-                /*
-                   Let the browser handle the hero CTA buttons
-                   natively on mobile. This prevents mobile
-                   browsers from interfering with the initial
-                   hero-section navigation.
-                */
-                if (
-                    window.innerWidth <= 760 &&
-                    this.closest(".hero-buttons")
-                ) {
-                    closeMobileMenu();
-                    return;
-                }
-
                 event.preventDefault();
 
                 targetElement.scrollIntoView({
@@ -363,7 +389,6 @@ function openProjectModal() {
     );
 
 }
-
 
 /* =========================================================
    8. PROJECT MODAL — CLOSE
@@ -700,9 +725,7 @@ if (contactSubmit) {
         }
     );
 
-}
-
-/* =========================================================
+}/* =========================================================
    14. REVEAL ANIMATIONS
    ========================================================= */
 
@@ -1026,8 +1049,7 @@ if (profilePhoto) {
 
 console.log(
     "Anand Patwa Portfolio — JavaScript loaded successfully."
-);
-/* =========================================================
+);/* =========================================================
    ANAND'S PORTFOLIO AI ASSISTANT
 ========================================================= */
 
@@ -1087,92 +1109,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         aiLauncher.setAttribute("aria-expanded", "false");
     }
-
-
-    /* =====================================================
-   MOBILE AI ASSISTANT ACTIVATION
-===================================================== */
-
-let mobileAIActivated = false;
-
-function activateMobileAI() {
-
-    if (mobileAIActivated) {
-        return;
-    }
-
-    mobileAIActivated = true;
-
-    openAIChat();
-
-    aiAssistant.classList.add("ai-attention");
-
-    setTimeout(() => {
-        aiAssistant.classList.remove("ai-attention");
-    }, 3500);
-}
-
-
-/* =====================================================
-   OPEN AI AFTER HALF-SCREEN SCROLL
-   MOBILE ONLY
-===================================================== */
-
-function handleMobileScroll() {
-
-    if (window.innerWidth > 760) {
-        return;
-    }
-
-    const scrollPosition = window.scrollY;
-    const triggerPoint = window.innerHeight * 0.5;
-
-    if (scrollPosition >= triggerPoint) {
-        activateMobileAI();
-        window.removeEventListener(
-            "scroll",
-            handleMobileScroll
-        );
-    }
-}
-
-window.addEventListener(
-    "scroll",
-    handleMobileScroll,
-    { passive: true }
-);
-
-
-/* =====================================================
-   OPEN AI AFTER MOBILE NAVIGATION / HERO CTA
-   MOBILE ONLY
-===================================================== */
-
-const mobileNavigationLinks =
-    document.querySelectorAll(
-        ".mobile-navigation a, .hero-buttons a"
-    );
-
-mobileNavigationLinks.forEach(link => {
-
-    link.addEventListener("click", () => {
-
-        if (window.innerWidth <= 760) {
-
-            /*
-               Allow the navigation/anchor action to happen
-               first, then open the AI assistant.
-            */
-
-            setTimeout(() => {
-                activateMobileAI();
-            }, 700);
-
-        }
-
-    });
-
-});
 
 
     /* =====================================================
