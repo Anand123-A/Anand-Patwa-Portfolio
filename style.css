@@ -3508,3 +3508,25 @@ html[data-theme="light"] .mobile-navigation a {
     color: #263548 !important;
     border-bottom-color: rgba(23, 33, 45, 0.12);
 }
+@media (max-width: 760px) {
+    .theme-toggle {
+        position: fixed !important;
+        top: max(12px, env(safe-area-inset-top)) !important;
+        left: 50% !important;
+        right: auto !important;
+        bottom: auto !important;
+        transform: translateX(-50%) !important;
+        z-index: 1003 !important;
+        margin: 0 !important;
+    }
+}
+
+/* Let page taps pass through the assistant's empty fixed wrapper. */
+.ai-assistant {
+    pointer-events: none;
+}
+
+.ai-assistant .ai-chat-window,
+.ai-assistant .ai-launcher {
+    pointer-events: auto;
+}
